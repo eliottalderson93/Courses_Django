@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Index</title>
+      {% load static %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'django_app/css/main.css' %}">
+      <!-- Put the static files in the static folder inside your app.  
+           Django collects files within all static folders and puts them within a single folder -->    
+    </head>
+    <body>
+        <div class = "wrapper">
+            {% if messages %}
+                {% for message in messages %}
+                <p style = "color:red;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+          <h1>Are you sure you want to delete this course?</h1>
+          <p>Name: {{name}}</p>
+          <p>Descripton: {{desc}}</p>
+          <p>Created at: {{created_at}}</p>
+          <p><a href = "/" >No</a>|<a href = "{{ID}}/delete" >Purge the non-believer</a></p>
+        </div>
+    </body>
+  </html>

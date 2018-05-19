@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Users</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'django_app\css\main.css' %}">
+</head>
+
+<body>
+  <div class='wrapper'>
+    <h1>Add a New Course</h1>
+    {% if messages %} {% for message in messages %}
+    <p style="color:red;">{{ message }}</p>
+    {% endfor %} {% endif %}
+    <p>Course Name</p>
+    <form action="/add" method="post">
+      {% csrf_token %}
+      <input type='text' name='name'>
+      <p>Description</p>
+      <input type='textarea' name='desc'>
+      <button>Add</button>
+    </form>
+    <h1>Courses</h1>
+    <div class='table'>
+      <div class='col1'>
+        <h6>Course Name</h6>
+        {% for i in courses %}
+        <p>{{i.name}}</p>
+        {% endfor %}
+      </div>
+      <div class='col2'>
+        <h6>Desc</h6>
+        {% for i in courses %}
+        <p>{{i.desc}}</p>
+        {% endfor %}
+      </div>
+      <div class='col3'>
+        <h6>Date Added</h6>
+        {% for i in courses %}
+        <p>{{i.created_at}}</p>
+        {% endfor %}
+      </div>
+      <div class='col4'>
+        <h6>Actions</h6>
+        {% for i in courses %}
+        <p>
+          <a href="/{{i.id}}">Remove</a>
+        </p>
+        {% endfor %}
+      </div>
+      <!-- <select name = 'potato'>
+              <option class = 'mer' value = '0'>0</option>
+              <option class = 'mer' value = "1">1</option>
+              <option class = 'mer' value = "2">2</option>
+              <option class = 'mer' value = "3">3</option>
+            </select> -->
+    </div>
+    <a href="/users/new">Add a new User</a>
+  </div>
+</body>
+
+</html>
